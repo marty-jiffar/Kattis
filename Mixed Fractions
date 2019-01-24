@@ -1,5 +1,15 @@
 import sys
 
+# Problem statement from Kattis:
+#
+# "You are part of a team developing software to help students learn basic 
+# mathematics. You are to write one part of that software, which is to display 
+# possibly improper fractions as mixed fractions. A proper fraction is one where
+# the numerator is less than the denominator; a mixed fraction is a whole number 
+# followed by a proper fraction. For example the improper fraction 27/12 is equivalent
+# to the mixed fraction 2 3/12. You should not reduce the fraction (i.e. don’t change 
+# 3/12 to 1/4)."
+
 def solve(numerator, denominator):
     """
     Parameters:
@@ -16,7 +26,7 @@ def solve(numerator, denominator):
 
     return whole_num, fraction_numerator, denominator
 
-### The following code (*provided by my professor) handles the 
+### The following code (provided by my professor) handles the 
 ### input and output tasks for this problem.
 
 if __name__ == "__main__":
