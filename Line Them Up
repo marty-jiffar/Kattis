@@ -1,8 +1,13 @@
 import sys
 
-# Both functions take a list and return a boolean.
-# is_ascending returns True when the list is in ascending order.
-# is_descending returns True when the list is in descending order.
+# Problem statement from Kattis:
+# 
+# "An eccentric coach asks players on the team to line up alphabetically 
+# at the start of practice. The coach does not tell the players whether 
+# they need to line up in increasing or decreasing order, so they guess. 
+# If they guess wrong, the coach makes them run laps before practice. Given 
+# a list of names, you are to determine if the list is in increasing alphabetical 
+# order, decreasing alphabetical order or neither."
 
 
 def is_ascending(l):
