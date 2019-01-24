@@ -1,0 +1,46 @@
+import sys
+
+def solve(rolls):
+    """
+    Parameters:
+     - rolls: List of integers. The outcome of each participant's die roll.
+
+    Returns: Integer, or None.
+             The index of the participant that has the highest unique outcome.
+             If no such participant exists, return None.
+    """
+
+    roll_dict = {}
+
+    for i, roll in enumerate(rolls, 1):
+        if not roll in roll_dict:
+            roll_dict[roll] = [i]
+        else:
+            roll_dict[roll] += [i]
+
+    max_unique = None
+
+    for roll, indexes in roll_dict.items():
+        if len(indexes) == 1 and (max_unique == None or roll > max_unique[0]):
+            max_unique = (roll, indexes[0])
+
+    if max_unique == None:
+        return None
+        
+    return max_unique[1]
+
+
+### The following code (provided by my professor) handles the input and output 
+### tasks for this problem.
+
+if __name__ == "__main__":
+    tokens = sys.stdin.read().split()
+
+    n = int(tokens.pop(0))
+    rolls = [int(tokens.pop(0)) for i in range(n)]
+
+    rv = solve(rolls)
+    if rv is None:
+        print("none")
+    else:
+        print(rv)
