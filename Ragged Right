@@ -1,0 +1,59 @@
+import sys
+
+# Problem statement from Kattis:
+#
+# "Word wrapping is the task of deciding how to break a paragraph of text 
+# into lines. For aesthetic reasons, we’d like all the lines except the 
+# last one to be about the same length. For example, we would say the text 
+# on the left looks less ragged than the text on the right:
+#
+#            This is a                 This
+#            paragraph                 is a paragraph
+#            of text.                  of text.
+#
+# Your job is to compute a raggedness value for an arbitrary paragraph of 
+# text. We’ll measure raggedness in a way similar to the TEX  typesetting 
+# system. Let n be the length, measured in characters, of the longest line 
+# of the paragraph. If some other line contains only m characters, then we’ll 
+# charge a penalty score of (n−m)^2 for that line. The raggedness will be the 
+# sum of the penalty scores for every line except the last one."
+
+def solve(lines):
+    """
+    Parameters:
+     - lines: List of strings. Each string is a line of the paragraph.
+
+    Returns: The raggedness score (as defined in the problem statement)
+    """
+
+    ragged_score = 0
+    longest_line = []
+
+    for line in lines:
+        if len(line) > len(longest_line):
+            longest_line = line[:]
+
+    n = len(longest_line)
+
+    for line in lines:
+        if line == lines[-1]:
+            break
+        m = len(line)
+        more_ragged = (n - m)**2
+        ragged_score += more_ragged
+
+    return ragged_score
+
+
+### The following code (provided by my professor) handles the input
+### and output tasks for this problem.
+
+if __name__ == "__main__":
+    lines = sys.stdin.readlines()
+
+    lines = [x.strip() for x in lines]
+
+    rv = solve(lines)
+    assert isinstance(rv, int), "solve() must return an integer"
+
+    print(rv)
