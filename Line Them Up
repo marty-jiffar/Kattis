@@ -33,7 +33,7 @@ def is_descending(l):
     return is_descending(l[1:])
 
 
-### The following code (*provided by my professor) handles the 
+### The following code (provided by my professor) handles the 
 ### input and output tasks for this problem.
 
 if __name__ == "__main__":
