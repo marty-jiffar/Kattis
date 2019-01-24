@@ -1,0 +1,66 @@
+import sys
+
+# Problem statement from Kattis:
+#
+# "You need to write a simple software auditor for tracking employees 
+# entering and exiting your building using their access cards (each card 
+# uniquely identifies the employee holding the card). Your software needs 
+# to look at the access log and determine if there are any anomalies. There
+# are two types of anomalies your software should detect:
+# - a user entering the building when, according to the log, they are 
+# already supposed to be in the building
+# - a user exiting the building when, according to the log, they are not 
+# supposed to be in the building
+# When your software sees someone enter a building (even if it’s an anomaly), 
+# that person is assumed to be inside the building from that point on, until 
+# he exits. Similarly, if your software sees someone exit the building (even 
+# if it’s an anomaly), that person is assumed to not be in the building from that 
+# point on, until he enters again. At the beginning of the log, everyone is assumed
+# to be outside the building."
+
+def solve(access_log):
+    # Replace pass with your solution
+    
+    d = {}
+
+    for i in range(len(access_log)):
+        name = access_log[i][1]
+        in_or_out = access_log[i][0]
+        new_move = ''
+
+        if in_or_out == 'entry':
+            new_move = 'entered'
+        elif in_or_out == 'exit':
+            new_move = 'exited'
+
+        new_log = name + " " + new_move
+
+        if not name in d:
+            d[name] = ["exited", new_move]
+
+        else:
+            d[name].append(new_move)
+
+        if i > 0 and len(d[name]) >= 2:
+            previous_val = d[name][-2]
+            if new_move == previous_val:
+                new_log += " (ANOMALY)"
+
+        print(new_log)
+        print()
+
+
+### The following code (provided by my professor) handles the input
+### and output tasks for this problem.
+
+if __name__ == "__main__":
+    tokens = sys.stdin.read().strip().split()
+
+    n = int(tokens.pop(0))
+    access_log = []
+    for i in range(n):
+        action = tokens.pop(0)
+        name = tokens.pop(0)
+        access_log.append( (action, name) )
+
+    solve(access_log)
