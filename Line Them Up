@@ -1,0 +1,49 @@
+import sys
+
+# Both functions take a list and return a boolean.
+# is_ascending returns True when the list is in ascending order.
+# is_descending returns True when the list is in descending order.
+
+
+def is_ascending(l):
+    # replace True with a suitable return value
+
+    if len(l) == 1:
+        return True
+
+    if l[0] > l[1]:
+        return False
+
+    return is_ascending(l[1:])
+
+def is_descending(l):
+    # replace True with a suitable return value
+
+    if len(l) == 1:
+        return True
+
+    if l[0] < l[1]:
+        return False
+
+    return is_descending(l[1:])
+
+
+### The following code (*provided by my professor) handles the 
+### input and output tasks for this problem.  Do not modify it!
+
+if __name__ == "__main__":
+    tokens = sys.stdin.read().strip().split()
+
+    n = int(tokens.pop(0))
+
+    assert(len(tokens) == n)
+
+    asc = is_ascending(tokens)
+    desc = is_descending(tokens)
+
+    if asc and not desc:
+        print("INCREASING")
+    elif not asc and desc:
+        print("DECREASING")
+    else:
+        print("NEITHER")
