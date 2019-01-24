@@ -1,2 +1,3 @@
 # Kattis
-My solutions to Kattis problems.
+
+This repository consists of my solutions to Kattis problems. I am coding in Python.
