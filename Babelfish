@@ -1,0 +1,46 @@
+import sys
+
+# This function takes two parameters: 
+#
+#  - A list of pairs. Each pair contains two strings in this order:
+#    an English word and its equivalent foreign word 
+#  - A list of words to translate
+
+def solve(word_pairs, words):
+    # Replace [] with the list of translated words
+
+    d = {}
+
+    for i in range(len(word_pairs)):
+        d[word_pairs[i][1]] = word_pairs[i][0]
+
+    trans_list = []
+
+    for word in words:
+        if word not in d:
+            trans_word = 'eh'
+        else:
+            trans_word = d[word]
+        trans_list.append(trans_word)
+
+    return trans_list
+
+### The following code (provided by my professor) handles the input
+### and output tasks for this problem.
+
+if __name__ == "__main__":
+    line = sys.stdin.readline().strip()
+
+    word_pairs = []
+    while line != "":
+        word_pairs.append(line.split())
+        line = sys.stdin.readline().strip()
+
+    words = []
+    for line in sys.stdin:
+        words.append(line.strip())
+
+    translated = solve(word_pairs, words)
+
+    for w in translated:
+        print(w)
