@@ -29,7 +29,7 @@ def is_descending(l):
 
 
 ### The following code (*provided by my professor) handles the 
-### input and output tasks for this problem.  Do not modify it!
+### input and output tasks for this problem.
 
 if __name__ == "__main__":
     tokens = sys.stdin.read().strip().split()
