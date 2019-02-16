@@ -1,0 +1,63 @@
+#!/usr/bin/python3
+
+import sys
+
+# Problem statement from Kattis:
+
+# Given an N×M grid, a person at location (x,y) can take a step to the 
+# left (decreasing x by 1), right (increasing x by 1), down (decreasing y by 1), 
+# or up (increasing y by 1). A path from (x0,y0) to (x1,y1) is a list of steps 
+# ("left", "right", "up", or "down") that starts at (x0,y0) and ends at (x1,y1). 
+# The length of a path is the number of steps in the path. The length of a shortest 
+# path between two points is just the Manhattan distance between those two points:
+#
+# |x1−x0|+|y1−y0|
+# Your task will be to find all the shortest paths from (x0,y0) to (x1,y1).
+
+def find_paths(x0, y0, x1, y1):
+
+    if x0 == x1 and y0 == y1:
+        return [[]]
+
+    paths = []
+
+    if x0 > x1:
+        small_paths = find_paths(x0 - 1, y0, x1, y1)
+        for path in small_paths:
+            new_path = ["left"] + path
+            paths.append(new_path)
+
+    elif x0 < x1:
+        small_paths = find_paths(x0 + 1, y0, x1, y1)
+        for path in small_paths:
+            new_path = ["right"] + path
+            paths.append(new_path)
+
+    if y0 > y1:
+        small_paths = find_paths(x0, y0 - 1, x1, y1)
+        for path in small_paths:
+            new_path = ["down"] + path
+            paths.append(new_path)
+
+    elif y0 < y1:
+        small_paths = find_paths(x0, y0 + 1, x1, y1)
+        for path in small_paths:
+            new_path = ["up"] + path
+            paths.append(new_path)
+
+    return paths
+
+
+### The following code (profided by my professor) 
+### handles the input and output tasks for this problem.
+
+if __name__ == "__main__":
+    x0, y0, x1, y1 = sys.stdin.read().split()
+
+    paths = find_paths(int(x0), int(y0), int(x1), int(y1))
+
+    if len(paths) == 1 and len(paths[0]) == 0:
+        print("NONE")
+    else:
+        for p in paths:
+            print(" ".join(p))
